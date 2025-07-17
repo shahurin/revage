@@ -14,7 +14,7 @@
     <div class="center">
     <td><p>メールアドレスまたは電話番号を入力してください</p></td>
     <form action="login-output.php" method="post">
-    <td><p>メールアドレスまたは電話番号: <input type="text" name="メールアドレスまたは電話番号" class="example2"></p></td>
+    <td><p>メールアドレスまたは電話番号: <input type="text" name="address" class="example2"></p></td>
     <tr>
     <td><p>パスワードを入力してください</p></td>
     <tr>
