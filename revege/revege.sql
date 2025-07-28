@@ -31,6 +31,9 @@ create table recipe (
     Poster varchar(200) not null,
 );
 
+create table purchase_id (
+    
+);
 
 
 
