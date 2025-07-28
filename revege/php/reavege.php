@@ -18,6 +18,40 @@
     </ul>    
 </header>
 
+<div class="product-container">
+    <?php
+    $pdo = new PDO('mysql:host=localhost;dbname=revage;charset=utf8', 'revege_staff', 'password');
+
+    if (isset($_REQUEST['keyword'])) {
+        $sql = $pdo->prepare('SELECT * FROM product WHERE name LIKE ?');
+        $sql->execute(['%' . $_REQUEST['keyword'] . '%']);
+    } else {
+        $sql = $pdo->query('SELECT * FROM product');
+    }
+
+    echo '<div class="product-row">';
+    $count = 0;
+
+    foreach ($sql as $row) {
+        $id = $row['id'];
+        echo '<div class="product-item">
+                <p>
+                    <a href="detail.php?id=', $id, '"><img alt="image" src="products/', $row['id'], '.jpg" width="200" height="150"></a>
+                </p>
+                <p><a href="detail.php?id=', $id, '">', $row['name'], '</a></p>
+                <p><a href="detail.php?id=', $id, '">¥', $row['price'], '</a></p>
+              </div>';
+
+        $count++;
+        if ($count % 3 == 0) {
+            echo '</div><div class="product-row">';
+        }
+    }
+
+    echo '</div>';
+    ?>
+</div>
+
 <footer>
     <ul id="footermenu">
         <li><a href="product.php"><p>トップに戻る</p></a></li>

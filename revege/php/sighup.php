@@ -20,7 +20,7 @@
     <tr>
     <td><p>パスワード : <input type="password" name="password" class="example2"></p></td>
     <tr>
-    <input type="submit" value="ログイン" class="button">
+    <input type="submit" value="新規登録" class="button">
     </form>
 </body>
 </html>

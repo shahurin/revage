@@ -11,8 +11,26 @@ create table customer (
     id int auto_increment primary key,
     name varchar(200) not null,
     address varchar(200) not null,
-    login varchar(100) not null unique,
+    user_id varchar(100) not null unique,
     password varchar(100) not null
 );
+
+create table product (
+    id int auto_increment primary key,
+    name varchar(200) not null,
+    term varchar not null,
+    detail varchar not null,
+    price varchar not null,
+    seller varchar not null,
+
+);
+
+create table recipe (
+    id int auto_increment primary key,
+    name varchar(200) not null,
+    Poster varchar(200) not null,
+);
+
+
 
 
