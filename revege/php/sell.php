@@ -21,7 +21,7 @@
     <td><p>詳細:<input type="password" name="detail" class="example2"></p></td>
     <tr>
     <tr>
-    <td><p>価格:<input type="number" name="price" class="example2"></p></td>
+    <td><p>価格:<input type="text" name="price" class="example2"></p></td>
     <tr>
     <input type="submit" value="出品する" class="button">
     </form>
