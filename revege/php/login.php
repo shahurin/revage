@@ -12,16 +12,14 @@
 <body>
     <h1>ログイン</h1>
     <div class="center">
-    <td><p>メールアドレスまたは電話番号を入力してください</p></td>
     <form action="login-output.php" method="post">
-    <td><p>メールアドレスまたは電話番号: <input type="text" name="address" class="example2"></p></td>
+    <td><p>ユーザーID:<input type="text" name="address" class="example2" value="ユーザIDを入力"></p></td>
     <tr>
-    <td><p>パスワードを入力してください</p></td>
     <tr>
     <td><p>パスワード : <input type="password" name="password" class="example2"></p></td>
     <tr>
     <input type="submit" value="ログイン" class="button">
     </form>
-    <td><p href="sighup.php">新規登録はこちら</p></td>
+    <td><a href="sighup.php">新規登録はこちら</a></td>
 </body>
 </html>
