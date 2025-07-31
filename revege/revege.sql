@@ -30,6 +30,9 @@ create table recipe (
 );
 
 
+insert into customer values(null,'清風太郎','大阪','SEIFU','SEIFU');
+
+
 
 
 
