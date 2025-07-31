@@ -18,11 +18,9 @@ create table customer (
 create table product (
     id int auto_increment primary key,
     name varchar(200) not null,
-    term varchar not null,
     detail varchar not null,
     price varchar not null,
     seller varchar not null,
-
 );
 
 create table recipe (
@@ -31,9 +29,7 @@ create table recipe (
     Poster varchar(200) not null,
 );
 
-create table purchase_id (
-    
-);
+
 
 
 
