@@ -1,0 +1,200 @@
+/* 全体のスタイル */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+}
+
+/* スマートフォン画面のコンテナ */
+.screen-container {
+    width: 100%;
+    max-width: 420px;
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px 16px 180px 16px; /* フッターとボタンのスペースを確保 */
+}
+
+h1, h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 16px 0;
+}
+
+a {
+    color: #2779a7;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+/* 注文内容リスト */
+.order-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.order-item img {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 12px;
+}
+
+.item-details {
+    flex-grow: 1;
+}
+
+.item-details .name {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0 0 4px 0;
+}
+
+.item-details .spec {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.item-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.item-controls .price {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    padding: 4px 8px;
+}
+
+.quantity-selector button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #555;
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+}
+
+.quantity-selector .quantity {
+    font-weight: bold;
+    margin: 0 12px;
+    min-width: 10px;
+    text-align: center;
+}
+
+.trash-icon {
+    fill: #555;
+}
+
+/* セクション区切り */
+.section {
+    margin-top: 32px;
+}
+
+/* 注文サマリー */
+.summary {
+    margin-top: 32px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.summary-row .label {
+    color: #555;
+}
+
+.summary-row .value {
+    font-weight: bold;
+}
+
+.summary-row.total {
+    font-size: 18px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+}
+
+/* 注文確定ボタンとフッターのコンテナ */
+.bottom-fixed-area {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 16px;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+    border-top: 1px solid #eee;
+}
+
+.confirm-button {
+    width: 100%;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+/* 下部ナビゲーション */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #666;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.nav-item svg {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 2px;
+    fill: #666;
+}
+
+.nav-item.active, .nav-item.active svg {
+    color: #4caf50;
+    fill: #4caf50;
+}

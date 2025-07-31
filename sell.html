@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品登録</title>
+    <link rel="stylesheet" href="sell.css">
+    <!-- Google Iconsを読み込み -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+</head>
+<body>
+
+    <div class="mobile-container">
+        <header class="header">
+            <h1>商品登録</h1>
+        </header>
+
+        <main class="main-content">
+            <div class="image-carousel">
+                <img src="C:\Users\lightbox\Downloads\photo02.jpg" alt="メインのトマト画像">
+                <div class="carousel-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+
+            <div class="thumbnail-gallery">
+                <img src="C:\Users\lightbox\Downloads\photo02.jpg" alt="トマトのサムネイル1" class="thumbnail">
+                <img src="C:\Users\lightbox\Downloads\photo02.jpg" alt="トマトのサムネイル2" class="thumbnail">
+                <img src="C:\Users\lightbox\Downloads\photo02.jpg" alt="トマトのサムネイル3" class="thumbnail">
+            </div>
+
+            <form class="product-form">
+                <div class="form-row">
+                    <input type="text" class="form-input half-width" placeholder="商品名">
+                    <input type="text" class="form-input half-width" placeholder="カテゴリ">
+                </div>
+                <div class="form-row with-icon">
+                    <select class="form-input">
+                        <option disabled>サイズを選択</option>
+                        <option selected>M</option>
+                    </select>
+                    <div class="select-arrows">
+                        <span class="material-icons-outlined">arrow_drop_up</span>
+                        <span class="material-icons-outlined">arrow_drop_down</span>
+                    </div>
+                </div>
+                 <div class="form-row with-icon">
+                    <input type="text" class="form-input" placeholder="価格">
+                     <div class="select-arrows">
+                        <span class="material-icons-outlined">arrow_drop_up</span>
+                        <span class="material-icons-outlined">arrow_drop_down</span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <input type="text" class="form-input">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-cancel">キャンセル</button>
+                    <button type="submit" class="btn btn-submit">登録</button>
+                </div>
+            </form>
+        </main>
+
+        <!-- 下部ナビゲーションバー (改良版) -->
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active">
+                <span class="material-icons-outlined">home</span>
+                <span>ホーム</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="material-icons-outlined">search</span>
+                <span>検索</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="material-icons-outlined">shopping_cart</span>
+                <span>カート</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="material-icons-outlined">history</span>
+                <span>プロフィール</span>
+            </a>
+        </nav>
+    </div>
+
+</body>
+</html>

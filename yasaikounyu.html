@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品詳細ページ</title>
+    
+    <!-- Google Fonts (Material Icons) の読み込み -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    
+    <!-- 外部CSSファイルの読み込み -->
+    <link rel="stylesheet" href="yasaisyouhin.css">
+</head>
+<body>
+
+    <!-- アプリ全体のコンテナ -->
+    <div class="app-container">
+
+        <!-- ヘッダー -->
+        <header>
+            <button class="header-btn">
+                <i class="material-icons-outlined">arrow_back_ios_new</i>
+            </button>
+            <button class="header-btn">
+                <i class="material-icons-outlined">favorite_border</i>
+            </button>
+        </header>
+
+        <!-- 商品ギャラリー -->
+        <div class="product-gallery">
+            <!-- メイン写真 -->
+            <img src="https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="新鮮なトマト" class="main-image">
+            
+            <!-- サブ写真コンテナ -->
+            <div class="thumbnail-container">
+                <img src="https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="人参" class="thumbnail active">
+                <img src="https://images.unsplash.com/photo-1561138249-160b45a0b3ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="人参2" class="thumbnail">
+                <img src="https://images.unsplash.com/photo-1445280471653-611213009d49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="人参3" class="thumbnail">
+            </div>
+        </div>
+        
+        <!-- メインコンテンツ -->
+        <main>
+            <div class="title-line">
+                <p class="category">葉物野菜</p>
+                <button class="ask-producer-btn">
+                    <i class="material-icons-outlined">sms</i>
+                    <span>生産者に質問</span>
+                </button>
+            </div>
+
+            <div class="product-info">
+                <h1>朝採れ 新鮮まるごと人参</h1>
+                <p class="price">¥580 <span>/(3個入)</span></p>
+            </div>
+
+            <div class="size-selector">
+                <span class="selector-label">サイズを選択</span>
+                <div class="selector-value">
+                    <span>Mサイズ</span>
+                    <i class="material-icons-outlined">expand_more</i>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="favorite-btn">
+                    <i class="material-icons-outlined">favorite_border</i>
+                </button>
+                <button class="add-to-cart-btn">
+                    <i class="material-icons-outlined">shopping_cart</i>
+                    <span>カートに追加</span>
+                </button>
+            </div>
+
+            <div class="description">
+                <div class="section-header">
+                    <h2>商品説明</h2>
+                </div>
+                <p>
+                    太陽の光をたっぷり浴びて育った、人参です。化学肥料を一切使わず、有機栽培で丁寧に育てました。サラダやパスタ、そのまま食べても絶品です。
+                </p>
+            </div>
+        </main>
+
+        <!-- 下部ナビゲーション -->
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active">
+                <i class="material-icons-outlined">home</i>
+                <span>ホーム</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="material-icons-outlined">search</i>
+                <span>さがす</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="material-icons-outlined">shopping_cart</i>
+                <span>カート</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="material-icons-outlined">person</i>
+                <span>アカウント</span>
+            </a>
+        </nav>
+        
+    </div>
+
+    <!-- 外部JavaScriptファイルの読み込み -->
+    <script src="yasaisyouhin.js" defer></script>
+
+</body>
+</html>

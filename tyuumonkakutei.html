@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注文内容</title>
+    <!-- CSSファイルを読み込む -->
+    <link rel="stylesheet" href="tyuumonkakutei.css">
+</head>
+<body>
+
+    <div class="screen-container">
+        <main>
+            <h1>注文内容</h1>
+
+            <!-- 注文商品リスト -->
+            <ul class="order-list">
+                <li class="order-item">
+                    <img src="https://images.unsplash.com/photo-1591465228663-a9b3152b1156?w=400&h=400&fit=crop" alt="有機トマト">
+                    <div class="item-details">
+                        <p class="name">有機トマト</p>
+                        <p class="spec">1kg</p>
+                    </div>
+                    <div class="item-controls">
+                        <span class="price">¥500</span>
+                        <div class="quantity-selector">
+                            <button aria-label="削除">
+                                <svg class="trash-icon" viewBox="0 0 24 24" width="20" height="20"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
+                            </button>
+                            <span class="quantity">2</span>
+                            <button aria-label="増やす">+</button>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="order-item">
+                    <img src="https://images.unsplash.com/photo-1550305103-a4e10467559c?w=400&h=400&fit=crop" alt="新鮮レタス">
+                    <div class="item-details">
+                        <p class="name">新鮮レタス</p>
+                        <p class="spec">1袋</p>
+                    </div>
+                    <div class="item-controls">
+                        <span class="price">¥300</span>
+                        <div class="quantity-selector">
+                           <button aria-label="削除">
+                                <svg class="trash-icon" viewBox="0 0 24 24" width="20" height="20"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
+                            </button>
+                            <span class="quantity">1</span>
+                            <button aria-label="増やす">+</button>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="order-item">
+                    <img src="https://images.unsplash.com/photo-1598512752271-33f913a58413?w=400&h=400&fit=crop" alt="地元産キュウリ">
+                    <div class="item-details">
+                        <p class="name">地元産キュウリ</p>
+                        <p class="spec">500g</p>
+                    </div>
+                    <div class="item-controls">
+                        <span class="price">¥450</span>
+                        <div class="quantity-selector">
+                            <button aria-label="削除">
+                                <svg class="trash-icon" viewBox="0 0 24 24" width="20" height="20"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
+                            </button>
+                            <span class="quantity">3</span>
+                            <button aria-label="増やす">+</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- 配達オプション -->
+            <div class="section">
+                <h2>配達オプション</h2>
+                <p style="margin: 0 0 8px 0; font-size: 14px;">最短配達: 明日</p>
+                <a href="#">配送先を編集</a>
+            </div>
+
+            <!-- ピックアップ -->
+            <div class="section">
+                <h2>ピックアップ</h2>
+                <a href="#">店舗を探す</a>
+            </div>
+            
+            <!-- 合計金額 -->
+            <div class="summary">
+                <div class="summary-row">
+                    <span class="label">小計</span>
+                    <span class="value">¥1250</span>
+                </div>
+                <div class="summary-row">
+                    <span class="label">配達</span>
+                    <span class="value">宅配</span>
+                </div>
+                 <div class="summary-row total">
+                    <span class="label">合計</span>
+                    <span class="value">¥1250</span>
+                </div>
+            </div>
+        </main>
+        
+        <!-- 下部固定エリア -->
+        <div class="bottom-fixed-area">
+            <button class="confirm-button">注文を確定</button>
+            <nav class="bottom-nav">
+                <a href="#" class="nav-item active">
+                    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
+                    <span>ホーム</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+                    <span>検索</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"></path></svg>
+                    <span>カート</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"></path></svg>
+                    <span>プロフィール</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+</body>
+</html>
