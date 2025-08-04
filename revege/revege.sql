@@ -1,36 +1,36 @@
-drop database if exists revege;
-create database revege default character set utf8 collate utf8_general_ci;
-drop user if exists 'revege_staff'@'localhost';
-create user 'revege_staff'@'localhost' identified by 'password';
-grant all on revege.* to 'revege_staff'@'localhost';
-use revege;
+DROP DATABASE IF EXISTS revege;
+CREATE DATABASE revege DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
+DROP USER IF EXISTS 'revege_staff'@'localhost';
+CREATE USER 'revege_staff'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL ON revege.* TO 'revege_staff'@'localhost';
 
+USE revege;
 
-create table customer (
-    id int auto_increment primary key,
-    name varchar(200) not null,
-    address varchar(200) not null,
-    user_id varchar(100) not null unique,
-    password varchar(100) not null
+CREATE TABLE customer (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    address VARCHAR(200) NOT NULL,
+    user_id VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL
 );
 
-create table product (
-    id int auto_increment primary key,
-    name varchar(200) not null,
-    detail varchar not null,
-    price varchar not null,
-    seller varchar not null,
+CREATE TABLE product (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    detail VARCHAR(500) NOT NULL,  -- 長さを指定
+    price INT NOT NULL,            -- 金額なのでINT推奨
+    seller VARCHAR(200) NOT NULL   -- 長さを指定
 );
 
-create table recipe (
-    id int auto_increment primary key,
-    name varchar(200) not null,
-    Poster varchar(200) not null,
+CREATE TABLE recipe (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    poster VARCHAR(200) NOT NULL   -- 小文字に統一推奨
 );
 
-
-insert into customer values(null,'清風太郎','大阪','SEIFU','SEIFU');
+INSERT INTO customer
+VALUES (NULL, '清風太郎', '大阪', 'SEIFU', 'SEIFU');
 
 
 
