@@ -1,23 +1,26 @@
-
 <?php
-unset($_SESSION['アカウント']);
-$pdo=new PDO('mysql:host=localhost;dbname=revege;charset=utf8',
-            'revege_member','password');
-$sql=$pdo->prepare('select * from customer where user_id=? and password=?');
-$sql->execute([$_REQUEST['user_id'],$_REQUEST['password']]);
-foreach ($sql as $row) {
-    $_SESSION['アカウント']=[
+session_start();
+var_dump($_SESSION);  // ← ここでも user_id が見える
+$pdo = new PDO('mysql:host=localhost;dbname=revege;charset=utf8','revege_staff','password');
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        'id'=>$row['id'],
-        'user_id'=>$row['user_id'],
-        'name'=>$row['name'],
-        'password'=>$row['password'],
-    ];
-}
-if (isset($_SESSION['アカウント'])) {
-    header('Location:revege.php');
-    exit();
+$user_id = $_POST['user_id'] ?? '';
+$password = $_POST['password'] ?? '';
+
+$sql = "SELECT * FROM customer WHERE user_id=? AND password=?";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$user_id, $password]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($user) {
+    // user_idをセッションに保存
+    $_SESSION['user_id'] = $user['user_id'];
+
+    // 確実にセッションを保存してからリダイレクト
+    session_write_close();
+    header('Location: revege.php');
+    exit;
 } else {
-    echo 'ユーザーIDまたはパスワードが違います。';
+    echo 'ユーザーIDまたはパスワードが間違っています';
 }
 ?>

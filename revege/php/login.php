@@ -10,6 +10,10 @@
 <meta name="google-site-verification" content="MRPhGeR6c_dv9NvU9oK2d3NhQAQp5UjSn2TiC-cO7s8" />
 </head>
 <body>
+<?php
+session_start();
+var_dump($_SESSION);  // ← ここでも user_id が見える
+?>
     <h1>ログイン</h1>
     <div class="center">
     <form action="login-output.php" method="post">
