@@ -17,7 +17,7 @@ var_dump($_SESSION);  // ← ここでも user_id が見える
     <h1>ログイン</h1>
     <div class="center">
     <form action="login-output.php" method="post">
-    <td><p>ユーザーID:<input type="text" name="user_id" class="example2" value="ユーザIDを入力"></p></td>
+    <td><p>ユーザーID:<input type="text" name="user_id" class="example2"></p></td>
     <tr>
     <tr>
     <td><p>パスワード : <input type="password" name="password" class="example2"></p></td>

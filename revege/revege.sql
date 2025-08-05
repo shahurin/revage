@@ -20,7 +20,8 @@ CREATE TABLE product (
     name VARCHAR(200) NOT NULL,
     detail VARCHAR(500) NOT NULL,  -- 長さを指定
     price INT NOT NULL,            -- 金額なのでINT推奨
-    seller VARCHAR(200) NOT NULL   -- 長さを指定
+    seller VARCHAR(200) NOT NULL,   -- 長さを指定
+    image  VARCHAR(200) NOT NULL
 );
 
 CREATE TABLE recipe (
