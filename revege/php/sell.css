@@ -46,8 +46,11 @@ body {
     position: relative;
 }
 
+/* メインプレビュー画像のアスペクト比を調整 */
 .image-carousel img {
     width: 100%;
+    height: 375px; /* 高さを固定 */
+    object-fit: cover; /* 画像の比率を保ったまま表示 */
     display: block;
 }
 
@@ -72,18 +75,58 @@ body {
     background-color: white;
 }
 
-/* サムネイルギャラリー */
+/* サムネイルギャラリーをグリッドレイアウトに変更 */
 .thumbnail-gallery {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4つの列を均等に配置 */
+    gap: 10px; /* グリッド間の隙間 */
     padding: 16px;
     background-color: #ffffff;
 }
 
-.thumbnail {
-    width: 32%;
+/* サムネイルのコンテナ */
+.thumbnail-container {
+    width: 100%;
+    padding-top: 100%; /* 正方形を維持するためのテクニック */
+    position: relative;
+    border: 2px dashed #ccc;
     border-radius: 12px;
+    cursor: pointer;
+    overflow: hidden; /* はみ出した画像を隠す */
+    background-color: #f8f9fa;
 }
+
+/* アクティブなサムネイルの枠線 */
+.thumbnail-container.active {
+    border-color: #5cb85c;
+    border-style: solid;
+}
+
+/* サムネイル内の画像 */
+.thumbnail-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 画像の比率を保ったままコンテナを埋める */
+}
+
+/* サムネイル内のプレースホルダーアイコン */
+.thumbnail-container .material-icons-outlined {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    color: #ccc;
+}
+
+/* ファイル選択ボタンを隠す */
+#image-upload-input {
+    display: none;
+}
+
 
 /* フォーム */
 .product-form {
@@ -169,7 +212,7 @@ select.form-input {
     color: white;
 }
 
-/* 下部ナビゲーション (改良版) */
+/* 下部ナビゲーション */
 .bottom-nav {
     position: absolute;
     bottom: 0;
