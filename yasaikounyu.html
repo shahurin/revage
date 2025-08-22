@@ -66,10 +66,10 @@
                 <button class="favorite-btn">
                     <i class="material-icons-outlined">favorite_border</i>
                 </button>
-                <button class="add-to-cart-btn">
+                <a href="syouhinkounyu2.html" class="add-to-cart-btn">
                     <i class="material-icons-outlined">shopping_cart</i>
                     <span>カートに追加</span>
-                </button>
+                </a>
             </div>
 
             <div class="description">
@@ -83,25 +83,43 @@
         </main>
 
         <!-- 下部ナビゲーション -->
+        <!-- ========== ここから変更 ========== -->
         <nav class="bottom-nav">
-            <a href="#" class="nav-item active">
+            <a href="yasai.html" class="nav-item">
                 <i class="material-icons-outlined">home</i>
                 <span>ホーム</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="search.html" class="nav-item">
                 <i class="material-icons-outlined">search</i>
                 <span>さがす</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="yasaikounyu.html" class="nav-item">
                 <i class="material-icons-outlined">shopping_cart</i>
                 <span>カート</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="account.html" class="nav-item">
                 <i class="material-icons-outlined">person</i>
                 <span>アカウント</span>
             </a>
         </nav>
+        <!-- ========== ここまで変更 ========== -->
         
+        <!-- サイズ選択モーダル -->
+        <div class="modal-overlay" id="size-modal-overlay"></div>
+        <div class="size-modal" id="size-modal">
+            <div class="modal-header">
+                <h3>サイズを選択</h3>
+                <button class="close-modal-btn" id="close-modal">
+                    <i class="material-icons-outlined">close</i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <button class="size-option" data-size="Sサイズ">Sサイズ</button>
+                <button class="size-option active" data-size="Mサイズ">Mサイズ</button>
+                <button class="size-option" data-size="Lサイズ">Lサイズ</button>
+            </div>
+        </div>
+
     </div>
 
     <!-- 外部JavaScriptファイルの読み込み -->
