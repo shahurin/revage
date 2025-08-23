@@ -30,6 +30,14 @@ CREATE TABLE recipe (
     poster VARCHAR(200) NOT NULL   -- 小文字に統一推奨
 );
 
+-- 商品画像テーブル
+CREATE TABLE product_images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    image_path VARCHAR(255) NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
+);
+
 INSERT INTO customer
 VALUES (NULL, '清風太郎', '大阪', 'SEIFU', 'SEIFU');
 
