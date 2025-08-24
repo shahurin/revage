@@ -1,0 +1,246 @@
+/* 基本スタイル */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.mobile-container {
+    width: 375px;
+    height: 812px;
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative; /* bottom-navの位置基準にする */
+}
+
+.main-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    /* ナビゲーションバーとの重なりを避けるための余白 */
+    padding-bottom: 80px; 
+}
+
+/* ヘッダー */
+.header {
+    padding: 16px;
+    text-align: left;
+    background-color: #ffffff;
+}
+
+.header h1 {
+    font-size: 1.2em;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* 画像カルーセル */
+.image-carousel {
+    position: relative;
+}
+
+/* メインプレビュー画像のアスペクト比を調整 */
+.image-carousel img {
+    width: 100%;
+    height: 375px; /* 高さを固定 */
+    object-fit: cover; /* 画像の比率を保ったまま表示 */
+    display: block;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.dot {
+    height: 8px;
+    width: 8px;
+    margin: 0 4px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.active {
+    background-color: white;
+}
+
+/* サムネイルギャラリーをグリッドレイアウトに変更 */
+.thumbnail-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4つの列を均等に配置 */
+    gap: 10px; /* グリッド間の隙間 */
+    padding: 16px;
+    background-color: #ffffff;
+}
+
+/* サムネイルのコンテナ */
+.thumbnail-container {
+    width: 100%;
+    padding-top: 100%; /* 正方形を維持するためのテクニック */
+    position: relative;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    cursor: pointer;
+    overflow: hidden; /* はみ出した画像を隠す */
+    background-color: #f8f9fa;
+}
+
+/* アクティブなサムネイルの枠線 */
+.thumbnail-container.active {
+    border-color: #5cb85c;
+    border-style: solid;
+}
+
+/* サムネイル内の画像 */
+.thumbnail-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 画像の比率を保ったままコンテナを埋める */
+}
+
+/* サムネイル内のプレースホルダーアイコン */
+.thumbnail-container .material-icons-outlined {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    color: #ccc;
+}
+
+/* ファイル選択ボタンを隠す */
+#image-upload-input {
+    display: none;
+}
+
+
+/* フォーム */
+.product-form {
+    padding: 16px;
+    background-color: #f8f9fa;
+}
+
+.form-row {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 25px;
+    border: 1px solid #ced4da;
+    font-size: 1em;
+    box-sizing: border-box; 
+}
+
+.form-input::placeholder {
+    color: #6c757d;
+}
+
+.form-input.half-width {
+    width: 48%;
+    background-color: #e9ecef;
+    border: none;
+}
+
+.form-row.with-icon {
+    position: relative;
+}
+
+.select-arrows {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+}
+.select-arrows .material-icons-outlined {
+    font-size: 18px;
+    line-height: 0.7;
+}
+
+
+select.form-input {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: white;
+}
+
+/* ボタン */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+}
+
+.btn {
+    width: 48%;
+    padding: 14px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-cancel {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.btn-submit {
+    background-color: #5cb85c;
+    color: white;
+}
+
+/* 下部ナビゲーション */
+.bottom-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    background-color: #ffffff;
+    padding: 10px 0;
+    border-top: 1px solid #f0f0f0;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #9e9e9e; /* 非アクティブ時の色 */
+    font-size: 12px;
+}
+
+.nav-item.active {
+    color: #4CAF50; /* アクティブ時の色 */
+}
+
+.nav-item .material-icons-outlined {
+    font-size: 24px;
+    margin-bottom: 2px;
+}
