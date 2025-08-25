@@ -90,6 +90,7 @@ $total_pages = ceil($total / $limit);
     <ul id="nav">
         <li><a href="logout.php">ログアウト</a></li>
         <li><a href="sell.php">出品</a></li>
+        <li><a href="pf.php">プロフィール</a></li>
     </ul>    
 </header>
 

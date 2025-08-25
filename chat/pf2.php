@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロフィール編集</title>
+    <!-- CSSファイルを読み込む -->
+    <link rel="stylesheet" href="pf2.css">
+</head>
+<body>
+
+    <div class="screen-container">
+        <!-- ヘッダー -->
+        <header class="page-header">
+            <a href="pf.php" class="back-button">戻る</a>
+            <h1>プロフィール編集</h1>
+            <!-- ★ id="save-button" を追加 -->
+            <button class="save-button" id="save-button">保存</button>
+        </header>
+
+        <!-- メインコンテンツ -->
+        <main>
+            <!-- プロフィール写真編集 -->
+            <section class="profile-picture-editor">
+                <label for="profile-picture-upload">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&q=80" alt="田中和樹のプロフィール写真" class="profile-picture" id="profile-picture-preview">
+                    <span class="change-photo-link">プロフィール写真を変更</span>
+                </label>
+                <input type="file" id="profile-picture-upload" accept="image/*" style="display: none;">
+            </section>
+
+            <!-- プロフィールフォーム -->
+            <section class="profile-form">
+                <form id="profile-form">
+                    <div class="form-group">
+                        <label for="name">名前</label>
+                        <input type="text" id="name" value="田中和樹">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">メールアドレス</label>
+                        <input type="email" id="email" value="kazuki.tanaka@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="bio">自己紹介</label>
+                        <textarea id="bio" rows="4" placeholder="自己紹介文を入力"></textarea>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- ★ JavaScriptのロジックを更新 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('profile-picture-upload');
+            const imagePreview = document.getElementById('profile-picture-preview');
+            const saveButton = document.getElementById('save-button');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const bioInput = document.getElementById('bio');
+
+            // --- 1. 画像プレビュー機能 ---
+            fileInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imagePreview.setAttribute('src', e.target.result);
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+
+            // --- 2. 保存ボタンの機能 ---
+            saveButton.addEventListener('click', function() {
+                // 保存するデータをオブジェクトにまとめる
+                const userProfile = {
+                    name: nameInput.value,
+                    email: emailInput.value,
+                    bio: bioInput.value,
+                    picture: imagePreview.src
+                };
+
+                // localStorageにJSON形式の文字列として保存
+                localStorage.setItem('userProfile', JSON.stringify(userProfile));
+
+                // ユーザーに保存完了を通知
+                alert('保存しました。');
+            });
+
+            // --- 3. ページ読み込み時に保存されたデータを復元する機能 ---
+            function loadProfile() {
+                const savedProfile = localStorage.getItem('userProfile');
+
+                if (savedProfile) {
+                    const userProfile = JSON.parse(savedProfile);
+                    nameInput.value = userProfile.name || '';
+                    emailInput.value = userProfile.email || '';
+                    bioInput.value = userProfile.bio || '';
+                    // 初期画像と異なる場合のみ設定（無駄な読み込みを防ぐ）
+                    if (userProfile.picture) {
+                       imagePreview.src = userProfile.picture;
+                    }
+                }
+            }
+            
+            // ページが読み込まれたら、保存されたデータを読み込む
+            loadProfile();
+        });
+    </script>
+
+</body>
+</html>
