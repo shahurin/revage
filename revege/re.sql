@@ -48,5 +48,15 @@ CREATE TABLE messages (
     FOREIGN KEY (receiver_id) REFERENCES customer(id) ON DELETE CASCADE
 );
 
+CREATE TABLE product_private_chat (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    from_user_id VARCHAR(50) NOT NULL,
+    to_user_id VARCHAR(50) NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
+);
+
 INSERT INTO customer (id, name, address, user_id, password)
 VALUES (NULL, '清風太郎', '大阪', 'SEIFU', 'SEIFU');

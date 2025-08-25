@@ -25,6 +25,7 @@ $chats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<link rel="stylesheet" href="chat.css">
 <meta charset="UTF-8">
 <title>商品チャット</title>
 <style>
@@ -40,8 +41,10 @@ $chats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <h2>商品チャット</h2>
 <div id="chat-box">
 <?php foreach($chats as $c): ?>
-    <div class="message <?= ($c['from_user_id']===$from_user)?'from-user':'to-user' ?>">
-        <?= htmlspecialchars($c['from_user_id']) ?>: <?= htmlspecialchars($c['message']) ?>
+    <div class="message-wrapper <?= ($c['from_user_id']===$from_user)?'from-user-wrapper':'to-user-wrapper' ?>">
+        <div class="message <?= ($c['from_user_id']===$from_user)?'from-user':'to-user' ?>">
+            <?= htmlspecialchars($c['message']) ?>
+        </div>
     </div>
 <?php endforeach; ?>
 </div>

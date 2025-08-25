@@ -1,0 +1,101 @@
+/* --- LINE風チャット --- */
+
+/* チャット全体 */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+/* チャットボックス */
+#chat-box {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* 個別メッセージ */
+.message {
+    display: inline-block;
+    padding: 10px 14px;
+    margin: 5px 0;
+    max-width: 75%;
+    word-wrap: break-word;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* 自分のメッセージ */
+.from-user {
+    background-color: #dcf8c6; /* LINE緑 */
+    align-self: flex-end;
+    border-radius: 18px 18px 0 18px;
+    text-align: right;
+}
+
+/* 相手のメッセージ */
+.to-user {
+    background-color: #ffffff;
+    align-self: flex-start;
+    border-radius: 18px 18px 18px 0;
+    text-align: left;
+}
+
+/* メッセージ入力フォーム */
+#chat-form {
+    display: flex;
+    position: sticky;
+    bottom: 0;
+    background-color: #f8f9fa;
+    padding: 8px;
+    border-top: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#chat-form input[type="text"] {
+    flex: 1;
+    padding: 10px 16px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+#chat-form button {
+    padding: 10px 16px;
+    border-radius: 25px;
+    border: none;
+    background-color: #5cb85c;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#chat-form button:hover {
+    background-color: #4cae4c;
+}
+
+/* スクロールバー */
+#chat-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+#chat-box::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 3px;
+}
+
+#chat-box::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* スマホ画面最適化 */
+@media (max-width: 400px) {
+    #chat-box {
+        height: 60vh; /* 高さ調整 */
+    }
+}
