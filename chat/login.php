@@ -14,23 +14,16 @@
 session_start();
 var_dump($_SESSION);  // ← ここでも user_id が見える
 ?>
-<header>
-    <ul id="nav">
-        <li><a href="logout.php">ログアウト</a></li>
-        <li><a href="sell.php">出品</a></li>
-    </ul>    
-</header>
-
-
-<footer>
-    <ul id="footermenu">
-        <li><a href="product.php"><p>トップに戻る</p></a></li>
-    </ul>
-    <div class="small"><a href="product.php"><img src="images/logo2.png" alt="wealthy"></a></div>
-        <div class="copy">
-            <small>Copyright&copy; wealthy All Rights Reserved.</small>
-        </div>
-    </div>
-</footer>
+    <h1>ログイン</h1>
+    <div class="center">
+    <form action="login-output.php" method="post">
+    <td><p>ユーザーID:<input type="text" name="user_id" class="example2"></p></td>
+    <tr>
+    <tr>
+    <td><p>パスワード : <input type="password" name="password" class="example2"></p></td>
+    <tr>
+    <input type="submit" value="ログイン" class="button">
+    </form>
+    <td><a href="sighup.php">新規登録はこちら</a></td>
 </body>
 </html>

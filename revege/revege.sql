@@ -12,7 +12,8 @@ CREATE TABLE customer (
     name VARCHAR(200) NOT NULL,
     address VARCHAR(200) NOT NULL,
     user_id VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL
+    password VARCHAR(100) NOT NULL,
+    ADD COLUMN profile_image VARCHAR(255) DEFAULT 'uploads/default_profile.png';
 );
 
 CREATE TABLE product (
@@ -37,6 +38,17 @@ CREATE TABLE product_images (
     image_path VARCHAR(255) NOT NULL,
     FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
 );
+
+CREATE TABLE messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sender_id INT NOT NULL,    -- 送信者 (customer.id)
+    receiver_id INT NOT NULL,  -- 受信者 (customer.id)
+    message TEXT NOT NULL,     -- 本文
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sender_id) REFERENCES customer(id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES customer(id) ON DELETE CASCADE
+);
+
 
 INSERT INTO customer
 VALUES (NULL, '清風太郎', '大阪', 'SEIFU', 'SEIFU');
