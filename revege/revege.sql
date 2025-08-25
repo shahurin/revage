@@ -12,8 +12,7 @@ CREATE TABLE customer (
     name VARCHAR(200) NOT NULL,
     address VARCHAR(200) NOT NULL,
     user_id VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL,
-    ADD COLUMN profile_image VARCHAR(255) DEFAULT 'uploads/default_profile.png';
+    password VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE product (
