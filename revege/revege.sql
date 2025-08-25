@@ -1,9 +1,9 @@
 DROP DATABASE IF EXISTS revege;
 CREATE DATABASE revege DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-DROP USER IF EXISTS 'revege_staff'@'localhost';
-CREATE USER 'revege_staff'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL ON revege.* TO 'revege_staff'@'localhost';
+DROP USER IF EXISTS 'root'@'localhost';
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL ON revege.* TO 'root'@'localhost';
 
 USE revege;
 

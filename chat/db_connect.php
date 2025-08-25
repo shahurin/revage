@@ -1,6 +1,6 @@
 <?php
 $dsn = 'mysql:host=localhost;dbname=revege;charset=utf8';
-$user = 'revege_staff';
+$user = 'root';
 $pass = 'password';
 
 try {

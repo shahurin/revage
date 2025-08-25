@@ -3,7 +3,7 @@
 session_start();
 unset($_SESSION['customer']);
 $pdo=new PDO('mysql:host=localhost;dbname=revege;charset=utf8',
-            'revege_staff','password');
+            'root','password');
 $sql=$pdo->prepare('select * from customer where user_id=? and password=?');
 $sql->execute([$_REQUEST['user_id'],$_REQUEST['password']]);
 foreach ($sql as $row) {
