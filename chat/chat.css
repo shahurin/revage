@@ -86,3 +86,41 @@
 #chat-form button:hover {
     background-color: #4cae4c;
 }
+
+/* --- スマホ用調整 --- */
+@media screen and (max-width: 600px) {
+    /* チャット全体の余白を縮小 */
+    .chat-container {
+        padding: 6px;
+    }
+
+    /* メッセージ間隔を少し狭める */
+    #chat-box {
+        gap: 4px;
+        padding: 6px;
+    }
+
+    /* 吹き出しサイズ調整（画面幅に合わせて80%まで広げる） */
+    .from-user,
+    .to-user {
+        font-size: 13px;
+        padding: 8px 12px;
+        max-width: 80%;
+    }
+
+    /* 入力フォームをスマホ風にコンパクト化 */
+    #chat-form {
+        padding: 6px;
+    }
+
+    #chat-form input[type="text"] {
+        font-size: 13px;
+        padding: 8px 12px;
+        margin-right: 6px;
+    }
+
+    #chat-form button {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}

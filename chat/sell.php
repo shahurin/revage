@@ -46,7 +46,7 @@
     </main>
     <nav class="bottom-nav">
         <a href="revege.php" class="nav-item active"><span class="material-icons-outlined">home</span><span>ホーム</span></a>
-        <a href="search.php" class="nav-item"><span class="material-icons-outlined">search</span><span>検索</span></a>
+        <a href="sell.php" class="nav-item"><span class="material-icons-outlined">search</span><span>出品</span></a>
         <a href="cart.php" class="nav-item"><span class="material-icons-outlined">shopping_cart</span><span>カート</span></a>
         <a href="pf.php" class="nav-item"><span class="material-icons-outlined">history</span><span>プロフィール</span></a>
     </nav>

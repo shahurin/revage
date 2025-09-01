@@ -58,6 +58,7 @@ if (!$product) {
         <p><a href="product_chat.php?product_id=<?= $product['id'] ?>&to_user=<?= urlencode($product['seller']) ?>">
         この商品の出品者とチャットする
         </a></p>
+        <p><a href="">購入</a></p>
         <a href="revege.php">← 商品一覧に戻る</a>
     </div>
 </body>
