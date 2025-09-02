@@ -1,0 +1,126 @@
+/* --- 商品詳細ページ専用スタイル --- */
+
+/* ヘッダー */
+.page-header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+    text-align: center;
+}
+.page-header .back-button {
+    position: absolute;
+    left: 15px;
+    color: #333;
+    text-decoration: none;
+}
+.page-header h1 {
+    font-size: 18px;
+    margin: 0 auto;
+    /* タイトルが長すぎる場合のための設定 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 40px; /* 左右のボタンとの余白 */
+}
+
+/* メインコンテンツ */
+main.detail-content {
+    padding: 0; /* 内側の要素でパディングを制御 */
+}
+
+/* 商品画像 */
+.product-image-container {
+    width: 100%;
+    padding-top: 80%; /* アスペクト比 10:8 */
+    position: relative;
+    background-color: #f0f2f5;
+}
+.product-image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 商品情報 */
+.product-info {
+    padding: 20px;
+    background: #fff;
+}
+.product-info h2 { /* 商品名 */
+    font-size: 24px;
+    margin: 0 0 15px 0;
+}
+.product-info .price {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+.product-info .description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555;
+    white-space: pre-wrap; /* 改行を反映させる */
+    margin-bottom: 20px;
+}
+
+/* 出品者情報 */
+.seller-info {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.seller-info .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ddd; /* ダミー背景色 */
+    margin-right: 12px;
+    /* 実際の画像を入れる場合は object-fit: cover; を推奨 */
+}
+.seller-info .seller-name span {
+    display: block;
+    font-size: 12px;
+    color: #888;
+}
+.seller-info .seller-name strong {
+    font-size: 15px;
+    color: #333;
+}
+
+/* アクションフッター */
+.action-footer {
+    padding: 15px;
+    background-color: #fff;
+    border-top: 1px solid #f0f0f0;
+    position: sticky;
+    bottom: 0;
+    flex-shrink: 0; /* mainコンテンツのflex-growで押し下げられないように */
+    margin-top: auto; /* mainコンテンツが少ない場合に一番下に配置 */
+}
+
+.chat-button {
+    display: block;
+    width: 93%;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.chat-button:hover {
+    background-color: #45a049;
+}

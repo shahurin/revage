@@ -4,13 +4,14 @@ require 'db_connect.php';
 
 // ログインチェック
 if (!isset($_SESSION['user_id'])) {
-    echo "ログインしてください。";
+    header('Location: login.php');
     exit;
 }
 
 // 商品IDチェック
 if (!isset($_GET['id'])) {
-    echo "商品が指定されていません。";
+    // IDがなければ一覧ページに戻す
+    header('Location: revege.php');
     exit;
 }
 
@@ -21,7 +22,8 @@ $stmt->execute([$id]);
 $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$product) {
-    echo "商品が存在しません。";
+    // 商品が存在しなければ一覧ページに戻す
+    header('Location: revege.php');
     exit;
 }
 ?>
@@ -30,36 +32,58 @@ if (!$product) {
 <head>
 <meta charset="UTF-8">
 <title><?= htmlspecialchars($product['name']) ?> - 商品詳細</title>
-<style>
-    .detail {
-        max-width: 600px;
-        margin: 20px auto;
-        border: 1px solid #ccc;
-        padding: 20px;
-        border-radius: 10px;
-        background: #fff;
-    }
-    .detail img {
-        width: 100%;
-        max-height: 300px;
-        object-fit: cover;
-        margin-bottom: 15px;
-    }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Fonts (Material Icons) -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+<!-- 共通CSS -->
+<link rel="stylesheet" href="revege.css">
+<!-- 詳細ページ専用CSS -->
+<link rel="stylesheet" href="product-detail.css">
 </head>
 <body>
-    <div class="detail">
-        <img src="<?= htmlspecialchars($product['image']) ?>" alt="">
-        <h1><?= htmlspecialchars($product['name']) ?></h1>
-        <p><?= nl2br(htmlspecialchars($product['detail'])) ?></p>
-        <p><b>¥<?= number_format($product['price']) ?></b></p>
-        <p>出品者: <?= htmlspecialchars($product['seller']) ?></p>
-        <!-- チャットボタン -->
-        <p><a href="product_chat.php?product_id=<?= $product['id'] ?>&to_user=<?= urlencode($product['seller']) ?>">
-        この商品の出品者とチャットする
-        </a></p>
-        <p><a href="">購入</a></p>
-        <a href="revege.php">← 商品一覧に戻る</a>
+
+<div class="app-container">
+    
+    <!-- ヘッダー -->
+    <header class="page-header">
+        <a href="revege.php" class="back-button">
+            <span class="material-icons-outlined">arrow_back_ios</span>
+        </a>
+        <h1>商品詳細</h1>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="detail-content">
+        <!-- 商品画像 -->
+        <div class="product-image-container">
+            <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+        </div>
+
+        <!-- 商品情報 -->
+        <div class="product-info">
+            <h2><?= htmlspecialchars($product['name']) ?></h2>
+            <div class="price">¥<?= number_format($product['price']) ?></div>
+            <p class="description"><?= nl2br(htmlspecialchars($product['detail'])) ?></p>
+        </div>
+
+        <!-- 出品者情報 -->
+        <div class="seller-info">
+            <div class="avatar"></div> <!-- プロフィール画像（ダミー） -->
+            <div class="seller-name">
+                <span>出品者</span>
+                <strong><?= htmlspecialchars($product['seller']) ?></strong>
+            </div>
+        </div>
+    </main>
+
+    <!-- アクションフッター -->
+    <div class="action-footer">
+        <a href="product_chat.php?product_id=<?= $product['id'] ?>&to_user=<?= urlencode($product['seller']) ?>" class="chat-button">
+            出品者とチャットする
+        </a>
     </div>
+
+</div>
+
 </body>
 </html>
