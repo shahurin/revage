@@ -30,6 +30,7 @@ if (!$product) {
 <head>
 <meta charset="UTF-8">
 <title><?= htmlspecialchars($product['name']) ?> - 商品詳細</title>
+<link rel="stylesheet" href="product-detail.css">
 <style>
     .detail {
         max-width: 600px;
