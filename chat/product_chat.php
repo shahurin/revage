@@ -3,56 +3,50 @@ require 'db_connect.php';
 session_start();
 
 $product_id = $_GET['product_id'];
-$to_user = $_GET['to_user'];
+$to_user = $_GET['to_user']; // 相手ユーザーID（出品者）
 $from_user = $_SESSION['user_id'] ?? 'guest';
 
 // 新規メッセージ送信（Ajax用）
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $message = $_POST['message'] ?? '';
     if ($message !== '') {
-        $stmt = $pdo->prepare("INSERT INTO product_private_chat (product_id, from_user_id, to_user_id, message) VALUES (?,?,?,?)");
+        $stmt = $pdo->prepare("
+            INSERT INTO product_private_chat (product_id, from_user_id, to_user_id, message) 
+            VALUES (?,?,?,?)
+        ");
         $stmt->execute([$product_id, $from_user, $to_user, $message]);
     }
     exit('OK');
 }
-
-// メッセージ一覧取得
-$stmt = $pdo->prepare("SELECT * FROM product_private_chat WHERE product_id=? ORDER BY created_at ASC");
-$stmt->execute([$product_id]);
-$chats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<link rel="stylesheet" href="chat.css">
 <meta charset="UTF-8">
 <title>商品チャット</title>
+<link rel="stylesheet" href="chat1.css">
 <style>
-.chat-container { width: 360px; margin: 0 auto; border:1px solid #ccc; padding:10px; }
-.message { margin:5px 0; padding:5px 10px; border-radius:10px; max-width:70%; }
-.from-user { background-color:#e0ffe0; text-align:right; margin-left:auto; }
-.to-user   { background-color:#f0f0f0; text-align:left; margin-right:auto; }
-#chat-box { height:300px; overflow-y:auto; border:1px solid #ccc; padding:5px; margin-bottom:10px; }
+body,html { margin:0; padding:0; height:100%; }
+.chat-container { display:flex; flex-direction:column; height:100vh; }
+#chat-box { flex:1; overflow-y:auto; padding:10px; background:#fafafa; }
+.message { margin:5px 0; padding:8px 12px; border-radius:12px; max-width:70%; word-wrap:break-word; }
+.from-user { background:#dcf8c6; margin-left:auto; text-align:right; }
+.to-user   { background:#fff; border:1px solid #ddd; margin-right:auto; text-align:left; }
+form { display:flex; padding:10px; border-top:1px solid #ddd; background:#fff; }
+form input { flex:1; padding:10px; border:1px solid #ccc; border-radius:20px; }
+form button { margin-left:5px; padding:10px 15px; border:none; border-radius:20px; background:#4CAF50; color:white; }
+.time { font-size:10px; color:#888; margin-top:2px; }
 </style>
 </head>
 <body>
-
-<h2>商品チャット</h2>
-<div id="chat-box">
-<?php foreach($chats as $c): ?>
-    <div class="message-wrapper <?= ($c['from_user_id']===$from_user)?'from-user-wrapper':'to-user-wrapper' ?>">
-        <div class="message <?= ($c['from_user_id']===$from_user)?'from-user':'to-user' ?>">
-            <?= htmlspecialchars($c['message']) ?>
-        </div>
-    </div>
-<?php endforeach; ?>
+<div class="chat-container">
+    <div id="chat-box"></div>
+    <form id="chat-form">
+        <input type="text" name="message" id="message" placeholder="メッセージを入力">
+        <button type="submit">送信</button>
+    </form>
 </div>
-
-<form id="chat-form">
-    <input type="text" name="message" id="message" placeholder="メッセージを入力" style="width:70%">
-    <button type="submit">送信</button>
-</form>
 
 <script>
 const form = document.getElementById('chat-form');
@@ -76,9 +70,8 @@ form.addEventListener('submit', e=>{
       });
 });
 
-// メッセージ更新（Ajax）
 function loadMessages(){
-    fetch(`product_chat_ajax.php?product_id=<?= $product_id ?>`)
+    fetch(`product_chat_ajax.php?product_id=<?= $product_id ?>&to_user=<?= urlencode($to_user) ?>`)
         .then(res=>res.text())
         .then(html=>{
             chatBox.innerHTML = html;
@@ -86,9 +79,9 @@ function loadMessages(){
         });
 }
 
-// 3秒ごとに更新
-setInterval(loadMessages,3000);
+setInterval(loadMessages, 3000);
+loadMessages();
 </script>
-
 </body>
 </html>
+
