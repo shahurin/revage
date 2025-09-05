@@ -2,9 +2,21 @@
 require 'db_connect.php';
 session_start();
 
+// ログインチェック
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit;
+}
+
+// パラメータチェック
+if (!isset($_GET['product_id']) || !isset($_GET['to_user'])) {
+    header('Location: revege.php');
+    exit;
+}
+
 $product_id = $_GET['product_id'];
 $to_user = $_GET['to_user']; // 相手ユーザーID（出品者）
-$from_user = $_SESSION['user_id'] ?? 'guest';
+$from_user = $_SESSION['user_id'];
 
 // 新規メッセージ送信（Ajax用）
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -19,69 +31,94 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit('OK');
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>商品チャット</title>
-<link rel="stylesheet" href="chat1.css">
-<style>
-body,html { margin:0; padding:0; height:100%; }
-.chat-container { display:flex; flex-direction:column; height:100vh; }
-#chat-box { flex:1; overflow-y:auto; padding:10px; background:#fafafa; }
-.message { margin:5px 0; padding:8px 12px; border-radius:12px; max-width:70%; word-wrap:break-word; }
-.from-user { background:#dcf8c6; margin-left:auto; text-align:right; }
-.to-user   { background:#fff; border:1px solid #ddd; margin-right:auto; text-align:left; }
-form { display:flex; padding:10px; border-top:1px solid #ddd; background:#fff; }
-form input { flex:1; padding:10px; border:1px solid #ccc; border-radius:20px; }
-form button { margin-left:5px; padding:10px 15px; border:none; border-radius:20px; background:#4CAF50; color:white; }
-.time { font-size:10px; color:#888; margin-top:2px; }
-</style>
+<title>チャット</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+<!-- 共通CSS（アプリ風の基本スタイル用） -->
+<link rel="stylesheet" href="revege.css"> 
+<!-- 更新したチャット専用CSS -->
+<link rel="stylesheet" href="chat.css">
 </head>
 <body>
-<div class="chat-container">
-    <div id="chat-box"></div>
+
+<div class="app-container">
+    <!-- ヘッダー -->
+    <header class="page-header">
+        <a href="product_detail.php?id=<?= htmlspecialchars($product_id) ?>" class="back-button">
+            <span class="material-icons-outlined">arrow_back_ios</span>
+        </a>
+        <h1><?= htmlspecialchars($to_user) ?></h1>
+    </header>
+
+    <div class="chat-container">
+        <!-- チャットボックス -->
+        <div id="chat-box"></div>
+    </div>
+    
+    <!-- メッセージ入力フォーム -->
     <form id="chat-form">
-        <input type="text" name="message" id="message" placeholder="メッセージを入力">
-        <button type="submit">送信</button>
+        <input type="text" id="message-input" placeholder="メッセージを入力..." autocomplete="off">
+        <button type="submit">
+            <span class="material-icons-outlined">send</span>
+        </button>
     </form>
 </div>
 
 <script>
-const form = document.getElementById('chat-form');
-const chatBox = document.getElementById('chat-box');
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('message-input');
+    const chatBox = document.getElementById('chat-box');
+    const productId = '<?= $product_id ?>';
+    const toUser = '<?= urlencode($to_user) ?>';
 
-form.addEventListener('submit', e=>{
-    e.preventDefault();
-    const message = document.getElementById('message').value;
-    if(message==='') return;
+    // フォーム送信処理
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        const message = input.value.trim();
+        if (message === '') return;
+        
+        const formData = new FormData();
+        formData.append('message', message);
 
-    const formData = new FormData();
-    formData.append('message', message);
+        input.value = ''; // 先にクリアしてUX向上
 
-    fetch(`product_chat.php?product_id=<?= $product_id ?>&to_user=<?= urlencode($to_user) ?>`, {
-        method:'POST',
-        body: formData
-    }).then(res=>res.text())
-      .then(res=>{
-          document.getElementById('message').value='';
-          loadMessages();
-      });
-});
-
-function loadMessages(){
-    fetch(`product_chat_ajax.php?product_id=<?= $product_id ?>&to_user=<?= urlencode($to_user) ?>`)
-        .then(res=>res.text())
-        .then(html=>{
-            chatBox.innerHTML = html;
-            chatBox.scrollTop = chatBox.scrollHeight;
+        fetch(`product_chat.php?product_id=${productId}&to_user=${toUser}`, {
+            method: 'POST',
+            body: formData
+        }).then(res => {
+            if (res.ok) {
+                loadMessages(true); // 即時更新（自分が送信したフラグを立てる）
+            }
         });
-}
+    });
 
-setInterval(loadMessages, 3000);
-loadMessages();
+    // メッセージを非同期で読み込む関数
+    function loadMessages(forceScroll = false) {
+        fetch(`product_chat_ajax.php?product_id=${productId}&to_user=${toUser}`)
+            .then(res => res.text())
+            .then(html => {
+                const isScrolledToBottom = chatBox.scrollHeight - chatBox.clientHeight <= chatBox.scrollTop + 5;
+                
+                chatBox.innerHTML = html;
+
+                // 常に一番下にスクロールするか、ユーザーが元々一番下にいた場合のみスクロール
+                if(forceScroll || isScrolledToBottom) {
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }
+            });
+    }
+
+    // 3秒ごとにメッセージを定期更新
+    setInterval(() => loadMessages(false), 3000);
+    
+    // ページ読み込み時に初回読み込み
+    loadMessages(true);
+});
 </script>
 </body>
 </html>
-
