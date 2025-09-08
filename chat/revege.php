@@ -97,6 +97,12 @@ $total_pages = ceil($total / $limit);
             <span class="material-icons-outlined">add_circle_outline</span>
             <span>出品</span>
         </a>
+
+        <a href="chat.php" class="nav-item">
+            <span class="material-icons-outlined">chat_bubble_outline</span>
+            <span>チャット</span>
+            </a>
+
         <a href="pf.php" class="nav-item">
             <span class="material-icons-outlined">person_outline</span>
             <span>プロフィール</span>
