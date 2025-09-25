@@ -2,28 +2,39 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>wealthy</title>
+<title>ログイン - REVEGE</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="ここにサイト説明を入れます">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.css">
-<link rel="stylesheet" href="css/style.css">
-<meta name="google-site-verification" content="MRPhGeR6c_dv9NvU9oK2d3NhQAQp5UjSn2TiC-cO7s8" />
+<!-- 作成したCSSファイルを読み込む -->
+<link rel="stylesheet" href="login.css">
 </head>
 <body>
-<?php
-session_start();
-var_dump($_SESSION);  // ← ここでも user_id が見える
-?>
-    <h1>ログイン</h1>
-    <div class="center">
-    <form action="login-output.php" method="post">
-    <td><p>ユーザーID:<input type="text" name="user_id" class="example2"></p></td>
-    <tr>
-    <tr>
-    <td><p>パスワード : <input type="password" name="password" class="example2"></p></td>
-    <tr>
-    <input type="submit" value="ログイン" class="button">
-    </form>
-    <td><a href="sighup.php">新規登録はこちら</a></td>
+
+    <!-- フォーム全体をコンテナで囲む -->
+    <div class="login-container">
+        <h1>ログイン</h1>
+
+        <form action="login-output.php" method="post">
+            
+            <!-- ユーザーID入力欄 -->
+            <div class="input-group">
+                <label for="user_id">ユーザーID</label>
+                <input type="text" id="user_id" name="user_id" class="input-field" required>
+            </div>
+
+            <!-- パスワード入力欄 -->
+            <div class="input-group">
+                <label for="password">パスワード</label>
+                <input type="password" id="password" name="password" class="input-field" required>
+            </div>
+            
+            <!-- ログインボタン -->
+            <input type="submit" value="ログイン" class="login-button">
+        </form>
+
+        <!-- 新規登録へのリンク -->
+        <a href="sighup.php" class="signup-link">新規登録はこちら</a>
+    </div>
+
 </body>
 </html>
